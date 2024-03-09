@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en" class="!scroll-smooth">
+
+<head>
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:title" content="QUIL CUT - BARBEARIA" />
+    <meta property="og:description" content="Venha para a melhor barbearia da região!">
+    <meta property="og:url" content="https://barbearia-site.vercel.app" />
+    <meta property="og:image" content="https://barbearia-site.vercel.app/assets/images/logoseo.webp" />
+    <meta property="og:type" content="website" />
+    <link rel="shortcut icon" href="/assets/images/logowhite.svg" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Inter", "ui-sans-serif", "system-ui"],
+                    },
+                    colors: {
+                        padrao: "#1E1E1E",
+                        default: "#161515",
+                    },
+
+                    animation: {
+                        "infinite-scroll": "infinite-scroll 25s linear infinite",
+                    },
+                    keyframes: {
+                        "infinite-scroll": {
+                            from: { transform: "translateX(0)" },
+                            to: { transform: "translateX(-100%)" },
+                        },
+                    },
+                },
+            },
+        };
+    </script>
+
+    <title>QUIL CUT - BARBEARIA</title>
+</head>
+
+<body class="bg-white">
+    <div class="">
+
+        <!-- TOLTIP COM WhatsApp -->
+        <div x-data="{ open: false }" class="fixed right-6 bottom-6 z-20 flex space-x-5">
+            <div x-show="open" x-transition:enter="transition-opacity duration-300" x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100" x-transition:leave="transition-opacity duration-300"
+                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" id="tooltip-light"
+                role="tooltip"
+                class="z-10 inline-block px-3 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg shadow-sm tooltip text-center ">
+                Agende seu horário na <b /><br /> <img src="./assets/images/logquil.png" class="w-20 mx-auto mt-1" alt="logo barbearia">
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+            <a href="https://wa.me/5582999774488?text=Ol%C3%A1%2C+quero+agendar+um+corte+para+%C3%A0s+14%3A00h+%21">
+                <img @mouseover="open = true" @mouseout="open = false" class="w-16 hover:scale-110 duration-300"
+                    src="/assets/icons/zap.png" alt="icon do WhatsApp" data-aos="zoom-in-up" data-aos-delay="400">
+
+            </a>
+        </div>
+
+        <!-- HEADER  -->
+        <header
+            class="z-20 flex justify-around sm:justify-between  items-center container anim mx-auto absolute top-5 left-0 right-0">
+            <div class="flex justify-center items-center space-x-5 " data-aos="fade-down">
+                <a href=""><img class="hover:scale-110 duration-300 w-8 md:w-full bg-no-repeat"
+                        src="/assets/icons/insta.svg" alt="" /></a>
+                <a href=""><img class="hover:scale-110 duration-300 w-8 md:w-full bg-no-repeat"
+                        src="/assets/icons/tiktok.svg" alt="" /></a>
+                <a href=""><img class="hover:scale-110 duration-300 w-8 md:w-11 bg-no-repeat" src="/assets/icons/X.svg"
+                        alt="" /></a>
+            </div>
+
+            <a href="#location" data-aos="fade-down">
+                <div
+                    class="py-[8px] px-3 sm:py-2 sm:px-5 rounded-full border-2 border-white justify-center items-center gap-3 inline-flex group hover:scale-[1.1] hover:bg-white duration-300">
+                    <p class="text-white md:text-2xl font-medium group-hover:text-black">
+                        Como chegar?
+                    </p>
+                    <div>
+
+                        <svg class="" width="26" height="26" viewBox="0 0 26 26" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M14.1475 4.4552C14.4553 4.14756 14.8726 3.97473 15.3077 3.97473C15.7429 3.97473 16.1602 4.14756 16.4679 4.4552L23.8525 11.8398C24.1602 12.1476 24.333 12.5649 24.333 13C24.333 13.4352 24.1602 13.8525 23.8525 14.1602L16.4679 21.5448C16.1584 21.8438 15.7439 22.0092 15.3136 22.0054C14.8834 22.0017 14.4718 21.8291 14.1675 21.5249C13.8633 21.2206 13.6907 20.809 13.6869 20.3787C13.6832 19.9485 13.8486 19.5339 14.1475 19.2244L18.5898 14.641H3.00003C2.56481 14.641 2.14741 14.4682 1.83965 14.1604C1.5319 13.8526 1.35901 13.4352 1.35901 13C1.35901 12.5648 1.5319 12.1474 1.83965 11.8396C2.14741 11.5319 2.56481 11.359 3.00003 11.359H18.5898L14.1475 6.77561C13.8399 6.46787 13.6671 6.05055 13.6671 5.61541C13.6671 5.18027 13.8399 4.76294 14.1475 4.4552Z"
+                                fill="white" class="group-hover:fill-black" />
+                        </svg>
+                    </div>
+                </div>
+            </a>
+        </header>
+
+        <div class=" h-screen bg-white grid grid-cols-[1fr_0px_0px] xl:grid-cols-[auto] relative">
+
+            <div class="h-screen relative shrink-0 ">
+
+                <video muted autoplay loop class="h-full w-full absolute object-cover" src="./assets/video/corte1.mp4"
+                    class="relative  bg-black">
+
+                    <!-- <img src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260" alt="" class="object-cover w-full lg:absolute h-80 lg:h-full" /> -->
+
+                    <!-- <video autoplay loop class="h-full w-full aspect-video " src="./assets/video/corte1.mp4"></video> -->
+                    <!-- <svg class="absolute top-0 -right-1 hidden h-full text-blue-500 lg:inline-block"
+                        viewBox="0 0 20 104" fill="currentColor">
+                        <polygon points="17.3036738 5.68434189e-14 20 5.68434189e-14 20 104 0.824555778 104"></polygon>
+                    </svg> -->
+                </video>
+            </div>
+
+            <div class="flex flex-col justify-center items-center px- bg-white">
+                <!-- <div>
+                  <p class="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
+                    Brand new
+                  </p>
+                </div>
+                <h5 class="mb-3 text-3xl font-extrabold leading-none sm:text-4xl">
+                  Your new ideal style
+                </h5>
+                <p class="mb-5 text-gray-800">
+                  <span class="font-bold">Lorem ipsum</span> dolor sit amet, consectetur adipiscing elit. Etiam sem neque, molestie sit amet venenatis et, dignissim ut erat. Sed aliquet velit id dui eleifend, sed consequat odio sollicitudin.
+                </p>
+                <div class="flex items-center">
+                  <button
+                    type="submit"
+                    class="inline-flex items-center justify-center h-12 px-6 mr-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                  >
+                    Get started
+                  </button>
+                  <a href="/" aria-label="" class="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">
+                    Learn More
+                    <svg class="inline-block w-3 ml-2" fill="currentColor" viewBox="0 0 12 12">
+                      <path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z"></path>
+                    </svg>
+                  </a>
+                </div> -->
+                <div
+                    class="flex flex-col items-center justify-center space-y-5 top-0 bottom-0 right-0 left-0 absolute backdrop-blur-sm md:backdrop-blur-none hidde">
+                    <div data-aos-delay="300" data-aos-duration="1500">
+
+                        <img src="/assets/images/logo.svg" class="w-60 2xl:w-96 drop-shadow-lg" alt="">
+                    </div>
+
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <p class="text-center text-padrao text-base sm:text-3xl font-extrabold">
+                            Horário de funcionamento: 07:00 ás 21:00
+                        </p>
+                    </div>
+                    <div class="mx-auto" data-aos="fade-up" data-aos-delay="200">
+                        <a
+                            href="https://wa.me/5582999774488?text=Ol%C3%A1%2C+quero+agendar+um+corte+para+%C3%A0s+14%3A00h+%21">
+                            <div
+                                class="py-2 px-5 rounded-full border-2 border-padrao justify-center items-center gap-3 inline-flex group hover:bg-padrao duration-300 hover:scale-[1.1]">
+                                <p class="text-padrao text-2xl font-medium group-hover:text-white">
+                                    Agendar horário
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="">
+            <div class="h-0 hidden bg-[#FF3334]"> </div>
+            <div class="h-0 hidden bg-[#326594]"> </div>
+        </div>
+
+        <!-- Bem vindo -->
+        <div class="px-4 py-16 mx-auto container md:px-24 lg:px-8 lg:py-52">
+            <div class="grid gap-10 lg:grid-cols-2">
+
+                <div class="flex items-center justify-center -mx-4 lg:pl-8 " data-aos="zoom-in" data-aos-delay="100">
+
+                    <div class="relative px-10 flex  justify-center drop-shadow-2xl">
+                        <img src="./assets/images/aquiles.png" class="relative z-10 w-60 lg:w-80 drop-shadow-lg "
+                            alt="barbeiro profissional">
+                        <div
+                            class="absolute bottom-0 bg-padrao w-full h-[75%] rounded-lg bg-[url('./assets/images/bgbarber.png')] object-cover">
+                        </div>
+
+                        <div class="absolute bottom-0  z-50 p-5 rounded-md bg-padrao ">
+
+                            <p class="text-base text-white md:text-lg text-center">
+                                Meu maior prazer é usar minha <mark class="px-2 bg-[#326594] text-white">ARTE</mark>
+                                para te surpreender!
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="flex flex-col justify-center md:pr-8 xl:pr-0 lg:max-w-lg ">
+
+                    <div class="max-w-xl mb-6" data-aos="zoom-in-right" data-aos-delay="100">
+                        <h2
+                            class="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-padrao sm:text-4xl sm:leading-none flex flex-col sm:flex-row items-center items-center ">
+                            Bem-vindo à <img class="sm:w-56 w-36 ml-4 mt-2 sm:mt-0" src="./assets/images/logquil.png" alt="">
+                         
+                        </h2>
+                        <p class="text-base text-padrao md:text-lg text-justify ">
+                            Na QUIL CUT, acreditamos que o estilo vai muito além de
+                            um corte de cabelo. Somos mais do que uma barbearia; somos um
+                            espaço dedicado à arte de aprimorar a sua aparência e elevar a
+                            sua confiança.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SERVICOS -->
+
+        <!-- Card Blog -->
+        <div class=" bg-[#326594] py-20">
+            <div class="2xl:max-w-[85rem] xl:max-w-[75rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+                <div class="max-w-3xl my-auto mx-auto mb-16" data-aos="fade-up" data-aos-delay="150"
+                    data-aos-duration="500">
+                    <h2
+                        class="max-w-l text-white mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none text-center">
+                        Nossos Serviços
+                       
+                    </h2>
+                    <p class="text-base text-white md:text-lg text-center">
+                        Na Style Barbershop, oferecemos uma variedade de serviços
+                        cuidadosamente projetados para atender às suas necessidades de
+                        cuidados pessoais e ressaltar o seu estilo único. Nossos
+                        experientes e talentosos barbeiros estão comprometidos em
+                        proporcionar uma experiência excepcional a cada visita.
+                    </p>
+                </div>
+                <!-- Grid -->
+                <div class="grid lg:grid-cols-3 gap-6">
+                    <!-- Card -->
+                    <a data-aos="fade-up" data-aos-delay="150" data-aos-duration="1000"
+                        class="group relative block rounded-xl  transition-shadow duration-300  shadow-2xl drop-shadow-2xl"
+                        href="https://wa.me/5582999774488?text=Ol%C3%A1%2C+quero+agendar+um+corte+para+%C3%A0s+14%3A00h+%21">
+
+                        <div
+                            class="flex-shrink-0 relative w-full rounded-xl overflow-hidden w-full h-[500px] before:absolute before:inset-x-0 before:w-full before:h-full before:bg-gradient-to-t before:from-gray-900/[.7] before:z-[1]">
+                            <img class="w-full h-full absolute top-0 start-0 object-cover  group-hover:scale-105 transition-transform duration-500 ease-in-out"
+                                src="./assets/images/c1.png" alt="Homem com cabelo cortado">
+                            <span
+                                class="absolute top-0 end-0 rounded-se-xl rounded-es-xl text-2xl font-medium bg-gray-800 text-white py-1.5 px-3 ">
+                                R$ 50,00
+                            </span>
+                        </div>
+
+                        <div class="absolute bottom-0 inset-x-0 z-10">
+                            <div class="flex flex h-full justify-between items-center justify-center p-4 sm:p-6">
+                                <div>
+
+                                    <h3
+                                        class="text-lg sm:text-3xl  font-semibold text-white group-hover:text-white/[.8]">
+                                        Corte normal
+                                    </h3>
+                                </div>
+
+                                <div>
+
+                                    <span href="#"
+                                        class="text-2xl font-medium rounded-md border-2 hover:text-gray-800 hover:bg-white text-white py-1.5 px-3  hover:transition-transform duration-500 ease-in-out">Agendar</span>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </a>
+                    <!-- End Card -->
+
+                    <!-- Card -->
+                    <a data-aos="fade-up" data-aos-delay="200" data-aos-duration="2100"
+                        class="group relative block rounded-xl  transition-shadow duration-300  shadow-2xl drop-shadow-2xl"
+                        href="https://wa.me/5582999774488?text=Ol%C3%A1%2C+quero+agendar+um+corte+para+%C3%A0s+14%3A00h+%21">
+
+
+
+                        <div
+                            class="flex-shrink-0 relative w-full rounded-xl overflow-hidden w-full h-[500px] before:absolute before:inset-x-0 before:w-full before:h-full before:bg-gradient-to-t before:from-gray-900/[.7] before:z-[1]">
+                            <img class="w-full h-full absolute top-0 start-0 object-cover  group-hover:scale-105 transition-transform duration-500 ease-in-out"
+                                src="./assets/images/c3.png" alt="Homem com cabelo cortado">
+                            <span
+                                class="absolute top-0 end-0 rounded-se-xl rounded-es-xl text-2xl font-medium bg-gray-800 text-white py-1.5 px-3 ">
+                                R$ 50,00
+                            </span>
+                        </div>
+
+
+
+                        <div class="absolute bottom-0 inset-x-0 z-10">
+                            <div class="flex flex h-full justify-between items-center justify-center p-4 sm:p-6">
+                                <div>
+
+                                    <h3
+                                        class="text-lg sm:text-3xl  font-semibold text-white group-hover:text-white/[.8]">
+                                        Barba completa
+                                    </h3>
+                                </div>
+
+                                <div>
+
+                                    <span href="#"
+                                        class="text-2xl font-medium rounded-md border-2 hover:text-gray-800 hover:bg-white text-white py-1.5 px-3  hover:transition-transform duration-500 ease-in-out">Agendar</span>
+                                </div>
+                            
+                            </div>
+                        </div>
+                    </a>
+                    <!-- End Card -->
+
+                    <!-- Card -->
+                    <a data-aos="fade-up" data-aos-delay="250" data-aos-duration="3000"
+                        class="group relative block rounded-xl  transition-shadow duration-300  shadow-2xl drop-shadow-2xl"
+                        href="https://wa.me/5582999774488?text=Ol%C3%A1%2C+quero+agendar+um+corte+para+%C3%A0s+14%3A00h+%21">
+
+                        <div
+                            class="flex-shrink-0 relative w-full rounded-xl overflow-hidden w-full h-[500px] before:absolute before:inset-x-0 before:w-full before:h-full before:bg-gradient-to-t before:from-gray-900/[.7] before:z-[1]">
+                            <img class="w-full h-full absolute top-0 start-0 object-cover  group-hover:scale-105 transition-transform duration-500 ease-in-out "
+                                src="./assets/images/c2.jpg" alt="Homem com cabelo cortado">
+                            <span
+                                class="absolute top-0 end-0 rounded-se-xl rounded-es-xl text-2xl font-medium bg-gray-800 text-white py-1.5 px-3 ">
+                                R$ 50,00
+                            </span>
+                        </div>
+
+
+                        <div class="absolute bottom-0 inset-x-0 z-10">
+                            <div class="flex flex h-full justify-between items-center justify-center p-4 sm:p-6">
+                                <div>
+
+                                    <h3
+                                        class="text-lg sm:text-3xl  font-semibold text-white group-hover:text-white/[.8]">
+                                        Corte e barba
+                                    </h3>
+                                </div>
+
+                                <div>
+
+                                    <span href="#"
+                                        class="text-2xl font-medium rounded-md border-2 hover:text-gray-800 hover:bg-white text-white py-1.5 px-3  hover:transition-transform duration-500 ease-in-out">Agendar</span>
+                                </div>
+                                <!-- <p class="mt-2 text-white/[.8]">
+                                Facebook launched the Watch platform in August
+                            </p> -->
+                            </div>
+                        </div>
+                    </a>
+                    <!-- End Card -->
+
+                </div>
+                <!-- End Grid -->
+            </div>
+        </div>
+        <!-- End Card Blog -->
+
+        <!-- clientes -->
+        <div class=" bg-white py-20">
+            <div class="max-w-3xl my-auto mx-auto mb-16 " data-aos="fade-up" data-aos-delay="150"
+                data-aos-duration="500">
+                <h2
+                    class="max-w-l mb-6 font-sans text-3xl font-bold tracking-tight text-black sm:text-4xl sm:leading-none text-center flex items-center justify-center ">
+                    Clientes da <img class="sm:w-56 w-36 ml-4" src="./assets/images/logquil.png" alt="logo quil cut">
+                    <!-- <br class="hidden md:block" /> -->
+                    <!-- <span class="inline-block text-deep-purple-accent-400">destination</span> -->
+                </h2>
+
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 max-w-7xl mx-auto px-4 lg:px-0">
+
+                <div class="space-y-2">
+
+                    <img class="w-full h-auto object-cover" src="./assets/images/c1.png" alt="Homem com cabelo cortado">
+                    <img class="w-full h-auto object-cover" src="./assets/images/galery/c3.jpg" alt="Homem com cabelo cortado">
+                    <img class="w-full h-auto object-cover" src="./assets/images/galery/c4.jpg" alt="Homem com cabelo cortado">
+
+                </div>
+                <div class="space-y-2">
+                    <img class="w-full h-auto object-cover" src="./assets/images/galery/c3.jpg" alt="Homem com cabelo cortado">
+                    <img class="w-full h-auto object-cover" src="./assets/images/c1.png" alt="Homem com cabelo cortado">
+                    <img class="w-full h-auto object-cover" src="./assets/images/galery/c4.jpg" alt="Homem com cabelo cortado">
+                </div>
+                <div class="space-y-2">
+                    <img class="w-full h-auto object-cover" src="./assets/images/c1.png" alt="Homem com cabelo cortado">
+                    <img class="w-full h-auto object-cover" src="./assets/images/galery/c4.jpg" alt="Homem com cabelo cortado">
+                    <img class="w-full h-auto object-cover" src="./assets/images/galery/c3.jpg" alt="Homem com cabelo cortado">
+                </div>
+                <div class="space-y-2">
+                    <img class="w-full h-auto object-cover" src="./assets/images/galery/c4.jpg" alt="Homem com cabelo cortado">
+                    <img class="w-full h-auto object-cover" src="./assets/images/c1.png" alt="Homem com cabelo cortado">
+                    <img class="w-full h-auto object-cover" src="./assets/images/galery/c3.jpg" alt="Homem com cabelo cortado">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Registros dos cortes -->
+        <div class=" bg-[#326594] py-20">
+            <div class="2xl:max-w-[85rem] xl:max-w-[75rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto ">
+                <div class="max-w-3xl my-auto mx-auto mb-16 flex" data-aos="fade-up" data-aos-delay="150"
+                    data-aos-duration="500">
+                    <h2
+                        class="max-w-l mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none text-center flex flex-col sm:flex-row items-center mx-auto">
+                        Renove seu estilo na <img class="sm:w-56 w-36 ml-4 mt-3 sm:mt-0" src="./assets/images/logoquilwhite.png"
+                            alt="logo quil cut">
+                    </h2>
+                  
+                </div>
+                <!-- Grid -->
+                <div class="grid lg:grid-cols-3 gap-6 place-items-center">
+
+                    <!-- video 1 -->
+                    <div class="relative group" data-aos="fade-up" data-aos-delay="150" data-aos-duration="1000">
+
+                        <video id="custom-video__video1" src="./assets/video/corte1.mp4"
+                            class="border drop-shadow-2xl shadow-2xl rounded-3xl w-[23rem] xl:w-80">
+
+                        </video>
+
+                        <div id="play-button1"
+                            class="absolute inset-0 m-auto cursor-pointer  flex items-center justify-center w-16 h-16 transition duration-300 transform bg-gray-100 rounded-full shadow-2xl hover:scale-110">
+                            ▶
+
+                        </div>
+
+                        <div onclick="togglePlayPause('custom-video__video1')"
+                            class="transition duration-300 absolute bg-transparent z-50 w-full h-full inset-0 rounded-3xl ">
+
+                        </div>
+
+                    </div>
+                    <!-- end video 1 -->
+
+                    <!-- video 2 -->
+                    <div class="relative group" data-aos="fade-up" data-aos-delay="250" data-aos-duration="2100">
+
+                        <video id="custom-video__video2" src="./assets/video/corte2.mp4"
+                            class="border drop-shadow-2xl shadow-2xl rounded-3xl w-[23rem] xl:w-80">
+
+                        </video>
+
+                        <div id="play-button2"
+                            class="absolute inset-0 m-auto cursor-pointer  flex items-center justify-center w-16 h-16 transition duration-300 transform bg-gray-100 rounded-full shadow-2xl hover:scale-110">
+                            ▶
+
+                        </div>
+
+                        <div onclick="togglePlayPause('custom-video__video2')"
+                            class="transition duration-300 absolute bg-transparent z-50 w-full h-full inset-0 rounded-3xl ">
+
+                        </div>
+
+                    </div>
+                    <!-- end video 2 -->
+
+
+                    <!-- video 3 -->
+                    <div class="relative group" data-aos="fade-up" data-aos-delay="250" data-aos-duration="3000">
+
+                        <video id="custom-video__video3" src="./assets/video/corte1.mp4"
+                            class="border drop-shadow-2xl shadow-2xl rounded-3xl w-[23rem] xl:w-80">
+
+                        </video>
+
+                        <div id="play-button3"
+                            class="absolute inset-0 m-auto cursor-pointer  flex items-center justify-center w-16 h-16 transition duration-300 transform bg-gray-100 rounded-full shadow-2xl hover:scale-110">
+                            ▶
+
+                        </div>
+
+                        <div onclick="togglePlayPause('custom-video__video3')"
+                            class="transition duration-300 absolute bg-transparent z-50 w-full h-full inset-0 rounded-3xl ">
+
+                        </div>
+
+                    </div>
+                    <!-- end video 3 -->
+
+                </div>
+                <!-- End Grid -->
+            </div>
+        </div>
+
+
+    <!-- LOCALIZACAO -->
+    <div id="location" class="bg-[#326594] pt-20">
+        <div class="flex flex-col mb-10 justify-center items-center px-4 sm:px-0">
+            <h2
+                class="max-w-l mb-8 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none text-center flex flex-col sm:flex-row items-center">
+                Transforme seu estilo, venha conhecer a  <img class="sm:w-40 w-36  ml-4 mt-3 sm:mt-0" src="./assets/images/logoquilwhite.png" alt="logo quil cut"> 
+                <!-- <br class="hidden md:block" /> -->
+                <!-- <span class="inline-block text-deep-purple-accent-400">destination</span> -->
+            </h2>
+
+            <div class=" bg-[#FF3334] rounded-full animate-bounce p-2">
+                <img class="rotate-90 " src="/assets/icons/arrow.svg" alt="" />
+            </div>
+        </div>
+
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d251591.1252649044!2d-36.54836298317174!3d-9.84101598218441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7043384d9b20e0d%3A0x2feb5f76ceb4524a!2sEl%20Mago%20Barbearia!5e0!3m2!1spt-BR!2sbr!4v1704137276316!5m2!1spt-BR!2sbr"
+            width="100%" height="500" style="border: 0" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <footer class=" bg-[#326594] flex py-20 ">
+        <div class="mx-auto flex flex-col gap-10">
+            <div class="flex justify-center items-center space-x-5">
+                <a href=""><img class="hover:scale-110 duration-300 w-8 md:w-full" src="/assets/icons/insta.svg"
+                        alt="" /></a>
+                <a href=""><img class="hover:scale-110 duration-300 w-8 md:w-full" src="/assets/icons/tiktok.svg"
+                        alt="" /></a>
+                <a href=""><img class="hover:scale-110 duration-300 w-8 md:w-11" src="/assets/icons/X.svg" alt="" /></a>
+            </div>
+
+            <div class="mx-auto">
+                <img class="w-52 " src="/assets/images/logowhite.svg" alt="" />
+            </div>
+
+            <div>
+                <p class="text-white text-center flex flex-col sm:flex-col items-center ">
+                    <!-- <img class="sm:w-32 w-20 mr-2 sm:mr-4" src="./assets/images/logoquilwhite.png" alt="logo quil cut"> -->
+
+                    2024 - Todos os
+                    direitos reservados
+                </p>
+            </div>
+        </div>
+    </footer>
+    <!-- FINAL -->
+    </div>
+    <script src="/script.js"></script>
+    <script src="/player.js"></script>
+</body>
+
+</html>
